@@ -12,7 +12,7 @@ const Footer = () => {
                 <Logo fz="50px" w1="150px" h1="80px" w2="450px" h2="70px" />
             </div>
             <div className="footer-content">
-                <div className="footer-item footer-contact">
+                {/* <div className="footer-item footer-contact">
                     <div className="footer-item-title">Manage Company And Employees</div>
                     <div className="footer-contact-container">
                         <div className="footer-contact-item footer-contact-facebook">
@@ -111,7 +111,7 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
            
         </div>

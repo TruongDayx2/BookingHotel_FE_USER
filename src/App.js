@@ -29,6 +29,7 @@ import MonthlyStatistics from './components/MonthlyStatistics';
 import MonthlyStatisticDetails from './components/MonthlyStatisticsDetails';
 import MonthlySalary from './components/MonthlySalary';
 import Work from './components/Work';
+import Home1 from './components/Home1';
 function App() {
     // const isAdmin = useSelector(state => state.login.isAdmin);
     return (
@@ -94,7 +95,7 @@ function App() {
                         <Work/>
                     </Route>
                     <Route path="/">
-                        <Home />
+                        <Home1 />
                     </Route>
                 </Switch>
                 <Footer />

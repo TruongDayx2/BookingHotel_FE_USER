@@ -105,13 +105,12 @@
     font-size: 19px;
     letter-spacing: -2px;
 }
-
+/* 
 @media screen and (max-width: 768px){
     .intro-container {
         width: 100%;
         flex-direction: column;
         margin-top: 51px;
-        /* background: none; */
     }
 
     .intro-wrapper-right,
@@ -122,4 +121,4 @@
     .intro-wrapper-left {
         padding-left: 20px;
     }
-}
+} */

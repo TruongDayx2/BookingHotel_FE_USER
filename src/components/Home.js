@@ -11,17 +11,12 @@ const Home = () => {
     }, [])
 
     return (
-
         <>
-
             <div style={{ marginTop: "126px", paddingBottom: "126px" }} className="tb_work_wrapper pb20">
                 <div className="container">
                     <div className="row">
-
                         <div className="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                             <div className="tb_work_txt_wrapper">
-
-
                                 <div className="abt_txt_box">
                                     <div className="tb_left_heading_wraper">
                                         <h4>Giải pháp quản lý tòa nhà văn phòng</h4>
@@ -65,7 +60,7 @@ const Home = () => {
             <hr />
             <hr />
 
-            <div class="row" style={{ display: "block" }}>
+            {/* <div class="row" style={{ display: "block" }}>
 
                 <a href="/floors">
                     <div class="jp_top_jobs_category_wrapper  ">
@@ -75,7 +70,7 @@ const Home = () => {
                                 Quản lý mặt bằng cho thuê
                             </h3>
                             <p>Module được thực hiện bởi ĐÀO QUANG HƯNG - B18DCCN278, cho phép quản lý danh sách các tầng, thông tin về các mặt bằng đã được thuê tại mỗi tầng,
-                                đăng ký hợp đồng mặt bằng mới cho các công ty muốn thuê 
+                                đăng ký hợp đồng mặt bằng mới cho các công ty muốn thuê
                             </p>
                         </div>
                     </div>
@@ -100,7 +95,7 @@ const Home = () => {
                                 Quản lý các đầu mục dịch vụ, mức lương và nhân viên tòa nhà
                             </h3>
                             <p>Thực hiện bởi ĐÀO KỶ NGUYÊN - B18DCCN458 cho phép quản lý các đầu mục dịch vụ, mức lương của mỗi đầu mục dịch vụ và
-                                các nhân viên cung cấp dịch vụ trong tòa nhà 
+                                các nhân viên cung cấp dịch vụ trong tòa nhà
                             </p>
                         </div>
                     </div>
@@ -119,7 +114,7 @@ const Home = () => {
                     </div>
                 </a>
 
-            </div>
+            </div> */}
 
         </>
     )

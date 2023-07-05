@@ -59,131 +59,31 @@ const Header = () => {
             }
         }
     }
+    useEffect(() => {
+      if(isLogout){
+        window.location.reload()
+      }
+    
 
+    }, [isLogout])
+    
 
-    return (isLogout) ? <Redirect to='/logout?redirect=true' /> : (
+    return  (
         <header className="header">
-            <Link className="header__logo" to='/'  >
-                MANAGEMENTBUILDING.COM
+            {/* <Link className="header__logo" to='/'  >
+                77Booking
             </Link>
-            <i className="bx bx-menu header__toggle" id="header-toggle" onClick={showMenu} />
+            <i className="bx bx-menu header__toggle" id="header-toggle" onClick={showMenu} /> */}
 
             <nav className="nav" id="nav-menu" >
                 <div className="nav__content bd-grid">
                     <Link className="nav__perfil" to='/' onClick={() => linkAction(null, true)}>
                         <div className="nav__name">
-                            MANAGEMENTBUILDING.COM
+                            77Booking
                         </div>
                     </Link>
                     <div className="nav__menu">
                         <ul className="nav__list">
-                            <li className="nav__item">
-                                <Link to='/intro' id="intro"
-                                    className="nav__link"
-                                    onClick={() => linkAction('intro', true)}
-                                >
-                                    Giới thiệu
-                                </Link>
-                            </li>
-                            <li className="nav__item dropdown">
-                                <div id="about" style={{ cursor: 'pointer' }}
-                                    className="nav__link dropdown__link"
-                                    onClick={() => linkAction('about', false)}>
-                                    Quản lý tòa nhà
-                                    <i className="bx bx-chevron-down dropdown__icon" />
-                                </div>
-
-                                <ul className="dropdown__menu">
-                                    <li className="dropdown__item">
-                                        <Link className="nav__link link__item" to='/company' onClick={() => linkAction('about', true)}>
-                                            Công ty
-                                        </Link>
-                                    </li>
-                                    <li className="dropdown__item">
-                                        <Link className="nav__link link__item" to='/floors' onClick={() => linkAction('about', true)}>
-                                            Mặt bằng
-                                        </Link>
-                                    </li>
-                                    <li className="dropdown__item">
-                                        <Link className="nav__link link__item" to='/monthly-fee-statistics' onClick={() => linkAction('about', true)}>
-                                            Tiền tháng này
-                                        </Link>
-                                    </li>
-                                    <li className="dropdown__item">
-                                        <Link className="nav__link link__item" to='/monthly-statistics' onClick={() => linkAction('about', true)}>
-                                            Thống kê doanh thu
-                                        </Link>
-                                    </li>
-                                    <li className="dropdown__item">
-                                        <Link className="nav__link link__item" to='/monthly-salary' onClick={() => linkAction('about', true)}>
-                                            Thống kê lương tháng nhân viên
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li className="nav__item dropdown">
-                                <div id="service" style={{ cursor: 'pointer' }}
-                                    className="nav__link dropdown__link"
-                                    onClick={() => linkAction('service', false)}>
-                                    Quản lý Dịch vụ
-                                    <i className="bx bx-chevron-down dropdown__icon" />
-                                </div>
-
-                                <ul className="dropdown__menu">
-                                    <li className="dropdown__item">
-                                        <Link className="nav__link link__item" to='/service-registration/companies' onClick={() => linkAction('service', true)}>
-                                            Đăng ký dịch vụ
-                                        </Link>
-                                    </li>
-                                    <li className="dropdown__item">
-                                        <Link className="nav__link link__item" to='/service-management' onClick={() => linkAction('service', true)}>
-                                            Quản lý dịch vụ
-                                        </Link>
-                                    </li>
-                                    {/* <li className="dropdown__item">
-                                        <Link className="nav__link link__item" to='/' onClick={() => linkAction('about', true)}>
-                                            Dịch vụ 2
-                                        </Link>
-                                    </li>
-                                    <li className="dropdown__item">
-                                        <Link className="nav__link link__item" to='/' onClick={() => linkAction('about', true)}>
-                                            Dịch vụ 3
-                                        </Link>
-                                    </li> */}
-                                </ul>
-                            </li>
-
-                            <li className="nav__item dropdown">
-                                <div id="buildingemployee" style={{ cursor: 'pointer' }}
-                                    className="nav__link dropdown__link"
-                                    onClick={() => linkAction('buildingemployee', false)}>
-                                    Quản lý nhân viên tòa nhà
-                                    <i className="bx bx-chevron-down dropdown__icon" />
-                                </div>
-
-                                <ul className="dropdown__menu">
-                                    <li className="dropdown__item">
-                                        <Link className="nav__link link__item" to='/buildingemployee' onClick={() => linkAction('buildingemployee', true)}>
-                                            Quản lý thông tin nhân viên
-                                        </Link>
-                                    </li>
-                                    <li className="dropdown__item">
-                                        <Link className="nav__link link__item" to='/work' onClick={() => linkAction('buildingemployee', true)}>
-                                            Quản lý công việc
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            {/* <li className="nav__item">
-                                <Link id='contact'
-                                    className="nav__link"
-                                    to={`/contact`}
-                                    onClick={() => linkAction('contact', true)}>
-                                    Liên hệ
-                                </Link>
-                            </li> */}
-
                             {
                                 !token ?
                                     (
@@ -197,19 +97,23 @@ const Header = () => {
                                         </li>
                                     ) :
                                     (
-                                        <li className="nav__item dropdown">
+                                        <li className="nav__item dropdown" style={{paddingBottom:"5px"}}>
                                             <div id='userSection'
                                                 className="nav__link" >
                                                 <div>
                                                     <i style={{ fontSize: "26px", marginRight: "5px" }} className='bx bxs-user-circle'></i>
                                                     {username}
                                                 </div>
-                                                {/* <span style={{display: token && isAdmin === 'true' ? 'none' : 'block', marginLeft: "30px", fontSize: "12px"}} 
-                                        className="user-amount"> {localStorage.getItem('money') ? localStorage.getItem('money') : 0}đ </span> */}
+                          
                                             </div>
                                             <ul className="dropdown__menu">
+                                                <li style={{ cursor: "pointer" }} className="dropdown__item" >
+                                                    <div className="nav__link1" >
+                                                        Thông tin
+                                                    </div>
+                                                </li>
                                                 <li style={{ cursor: "pointer" }} className="dropdown__item" onClick={() => logout()}>
-                                                    <div className="nav__link">
+                                                    <div className="nav__link1">
                                                         Đăng xuất
                                                     </div>
                                                 </li>

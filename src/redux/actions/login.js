@@ -10,7 +10,7 @@ export const login = (data) => async dispatch => {
             data: data
         });
 
-        if(res.status == 200 ){
+        if(res.status === 200 ){
             localStorage.setItem("token", res.data.accessToken);
             localStorage.setItem("username", res.data.username);
             dispatch({
@@ -38,12 +38,14 @@ export const signUp = (data) => async dispatch => {
     try {
         const res = await axios({
             method: 'POST',
-            baseURL: process.env.REACT_APP_URL_API,
+            baseURL: 'http://localhost:8080',
             url: "register",
             data: data
         });
 
-        if(res.status == 200 ){
+        if(res.status === 200 ){
+            localStorage.setItem("token", res.data.accessToken);
+            localStorage.setItem("username", res.data.username);
             dispatch({
                 type: SIGNUP,
                 data: res.data

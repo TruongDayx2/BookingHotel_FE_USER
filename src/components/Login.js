@@ -3,7 +3,7 @@ import {Redirect, useLocation } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import '../css/login.css'
 import imgPath from '../assets/img/img-login.svg'
-import { login } from '../redux/actions/login';
+import { login, signUp } from '../redux/actions/login';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -17,7 +17,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const dataLogin = useSelector(state => state.login.data);
     const error = useSelector(state => state.login.error);
-
+    console.log(error)
     useEffect(() => {
         if(error === true){
             if(loginOrSignUp) {
@@ -66,7 +66,7 @@ const Login = () => {
         return email.trim().split('@')[1] !== 'gmail.com' ? false : true;
     }
 
-    const signUp = (e) => {
+    const register = async (e) => {
         e.preventDefault();
         const usernameTag = document.querySelector('#username-up');
         // const emailTag = document.querySelector('#email-up');
@@ -86,33 +86,22 @@ const Login = () => {
         const data = {
             username: username,
             password: password,
-            // email: email,
+            email: email,
         }
         setLoginOrSignUp(false);
+        dispatch(signUp(data))
         if(location.pathname === '/login')
             console.log(data);
     }
 
     const signIn = async (e) => {
         e.preventDefault();
-        // const emailTag = document.querySelector('#email').parentElement;
-        // const passwordTag = document.querySelector('#password').parentElement;
-        // const usernameTag = document.querySelector('#username-up');
-        // if(username.trim().length < 6){
-        //     usernameTag.parentElement.classList.add('empty');
-        //     return;
-        // }
-        // if(password.trim().length < 6 ){
-        //     passwordTag.classList.add('numError');
-        //     return;
-        // }
-
         // api
         const data = {
             username: username,
             password: password
         }
-
+        setLoginOrSignUp(true);
         dispatch(login(data));
         
     }
@@ -208,7 +197,7 @@ const Login = () => {
                                 id="password-up"
                             />
                         </div>
-                        <button onClick={(e) => signUp(e)} className="login__button">
+                        <button onClick={(e) => register(e)} className="login__button">
                             Đăng kí
                         </button>
                         <div>
@@ -217,17 +206,6 @@ const Login = () => {
                                 Đăng nhập
                             </span>
                         </div>
-                        {/* <div className="login__social">
-                            <Link to='/'  className="login__social-icon">
-                                <i className="bx bxl-facebook" />
-                            </Link>
-                            <Link to='/'  className="login__social-icon">
-                                <i className="bx bxl-twitter" />
-                            </Link>
-                            <Link to='/'  className="login__social-icon">
-                                <i className="bx bxl-google" />
-                            </Link>
-                        </div> */}
                     </form>
                 </div>
             </div>

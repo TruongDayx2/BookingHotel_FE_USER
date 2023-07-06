@@ -7,12 +7,13 @@ import img1 from '../assets/img/1.png'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllHotel } from '../redux/actions/hotel';
-import { Link, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-
+import { Link, Redirect, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 
 const Home1 = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const history = useHistory();
   useEffect(() => {
     dispatch(getAllHotel());
     return () => {
@@ -27,6 +28,7 @@ const Home1 = () => {
   const searchBarChange = (e) => {
     setAddress(e.target.value)
   }
+  console.log(address) 
 
 
   function SlideShow() {
@@ -77,8 +79,13 @@ const Home1 = () => {
       </Slider>
     );
   }
-
+  const handleButtonClick = () => {
+    // Chuyển hướng đến trang /login và truyền dữ liệu từ input
+    history.push('/hotelSearch', { data: address });
+  };
   return (
+    
+
 
     <div className="container">
       <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', height: '100%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -92,10 +99,10 @@ const Home1 = () => {
             <div className='left_search'>
               <div>Chọn thành phố bạn muốn đến</div>
               <form action="javascript:" class="search-bar" style={{}}>
-                <input value={''} onChange={(e) => { searchBarChange(e) }} type="search" name="search" pattern=".*\S.*" required />
-                <button onClick={() => { console.log(address) }} class="search-btn" type="submit">
-                  <span>Search</span>
-                </button>
+                <input value={address} onChange={(e) => { searchBarChange(e) }} type="search" name="search" pattern=".*\S.*" required />
+                  <button onClick={handleButtonClick} class="search-btn" type="submit">
+                    <span>Search</span>
+                  </button>
               </form>
             </div>
           </div>
@@ -110,9 +117,9 @@ const Home1 = () => {
 
     </div>
 
-
-
-  )
+)
+    
+  
 }
 
 export default Home1;

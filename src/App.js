@@ -30,6 +30,8 @@ import MonthlyStatisticDetails from './components/MonthlyStatisticsDetails';
 import MonthlySalary from './components/MonthlySalary';
 import Work from './components/Work';
 import Home1 from './components/Home1';
+import HotelSearch from './components/HotelSearch';
+
 function App() {
     // const isAdmin = useSelector(state => state.login.isAdmin);
     return (
@@ -70,6 +72,9 @@ function App() {
                     <Route path="/floors">
                         <Floor />
                     </Route>
+                    <Route path="/hotelSearch">
+                        <HotelSearch />
+                    </Route>
                     <Route path="/rented-areas">
                         <RentedArea />
                     </Route>
@@ -97,6 +102,7 @@ function App() {
                     <Route path="/">
                         <Home1 />
                     </Route>
+                    
                 </Switch>
                 <Footer />
             </Router>

@@ -6,10 +6,11 @@ import '../css/hotelSearch.css';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllHotel } from '../redux/actions/hotel';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const HotelSearch = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const history = useHistory();
   const dataSearch = location.state && location.state.data;
 
   useEffect(() => {
@@ -38,7 +39,9 @@ const HotelSearch = () => {
 
   }, [])
 
-  console.log(hotels)
+  const hanldeClickHotel = (hotel)=>{
+    history.push('/hotel',{data:hotel})
+  }
 
 
   return (
@@ -57,7 +60,7 @@ const HotelSearch = () => {
         </div>
         <div className='list_hotel'>
           {hotels.map(hotel => (
-            <div key={hotel.id} className='hotel_item'>
+            <div key={hotel.id} className='hotel_item' onClick={()=>hanldeClickHotel(hotel)}>
               <img src={hotel.hotelImg} alt={`hotel ${hotel.id}`} className='hotel_img' />
               <div className='hotel_info'>
                 <div className='hotel_title'>Khách sạn:

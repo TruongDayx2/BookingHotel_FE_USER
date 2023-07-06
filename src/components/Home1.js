@@ -80,7 +80,6 @@ const Home1 = () => {
     );
   }
   const handleButtonClick = () => {
-    // Chuyển hướng đến trang /login và truyền dữ liệu từ input
     history.push('/hotelSearch', { data: address });
   };
   return (

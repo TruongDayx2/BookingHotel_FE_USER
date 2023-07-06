@@ -16,9 +16,13 @@ import monthlyStatisticsDetailReducers from './monthly_statistics_details';
 import monthlySalaryReducers from './monthly_salary';
 import workReducers from './work';
 import hotelReducers from './hotel';
+import roomTypeReducers from './room_type';
+import roomReducers from './booking';
 const reducers = combineReducers({
     login: loginReducers,
     hotel: hotelReducers,
+    roomType:roomTypeReducers,
+    room:roomReducers,
     company: companyReducers,
     employee: employeeReducers,
     registeredService: registeredServiceReducers,

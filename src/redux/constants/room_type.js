@@ -1,0 +1,1 @@
+export const GET_ROOM_TYPE_HOTELID = 'GET_ROOM_TYPE_HOTEL_ID';

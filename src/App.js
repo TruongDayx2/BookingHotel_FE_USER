@@ -31,6 +31,8 @@ import MonthlySalary from './components/MonthlySalary';
 import Work from './components/Work';
 import Home1 from './components/Home1';
 import HotelSearch from './components/HotelSearch';
+import Hotel from './components/Hotel';
+import Booking from './components/Booking';
 
 function App() {
     // const isAdmin = useSelector(state => state.login.isAdmin);
@@ -74,6 +76,12 @@ function App() {
                     </Route>
                     <Route path="/hotelSearch">
                         <HotelSearch />
+                    </Route>
+                    <Route path="/hotel">
+                        <Hotel />
+                    </Route>
+                    <Route path="/booking">
+                        <Booking />
                     </Route>
                     <Route path="/rented-areas">
                         <RentedArea />

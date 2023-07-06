@@ -18,8 +18,9 @@
 
 .hotel_img{
   width: 200px;
-  height: auto;
+  height: 200px;
   margin-right: 20px;
+  border-radius: 5px;
 }
 
 .hotel_info {

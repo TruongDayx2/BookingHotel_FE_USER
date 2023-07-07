@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import '../css/booking.css';
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
-import { getRoomByHotelIdAndRoomType } from '../redux/actions/booking';
+import { createNewOrder, getRoomByHotelIdAndRoomType, updateRoom } from '../redux/actions/booking';
+import { createNewInfo } from "../redux/actions/info";
 
 const Booking = () => {
   const dispatch = useDispatch();
@@ -10,8 +11,8 @@ const Booking = () => {
   const room_typeData = location.state && location.state.data;
   const hotelID = location.state && location.state.hotelId;
   const data = useSelector(state => state.room.data)
-
-
+  const dataId = parseInt(localStorage.getItem("idUser"))
+  console.log('userId',dataId)
   const [selectedHotel, setSelectedHotel] = useState(null);
 
   const handleDetailClick = (hotelId) => {
@@ -50,6 +51,9 @@ const Booking = () => {
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const error = useSelector(state => state.room.error);
+  const error1 =  useSelector(state => state.info.error);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (new Date(checkInDate) >= new Date(checkOutDate)) {
@@ -58,6 +62,33 @@ const Booking = () => {
     }
     // Xử lý dữ liệu đặt phòng - gửi đến server hoặc thực hiện các thao tác khác
     console.log('Booking submitted:', { name, phone, email, checkInDate, checkOutDate });
+    // Thêm order
+    addInfo()
+    // Cập nhật room
+    console.log(data)
+    if(data.length>0){
+      const filteredData = data.filter(item => item.rmStatus === 0);
+      if(filteredData.length>0){
+        console.log(filteredData[0])
+        const updateRoomData = {
+          rmNumber:filteredData[0].rmNumber,
+          rmStatus:1,
+          roomTypeId:filteredData[0].roomTypeId,
+          hotelId:filteredData[0].hotelId
+        }
+        console.log(updateRoomData)
+        dispatch(updateRoom(filteredData[0].id,updateRoomData))
+
+      }
+    }
+
+
+    if(error && error1){
+      alert('Lỗi')
+    }else{
+      alert('Bạn đã đặt phòng thành công')
+      window.location.reload();
+    }
 
     // Reset form fields
     setName('');
@@ -66,7 +97,28 @@ const Booking = () => {
     setCheckInDate('');
     setCheckOutDate('');
     setErrorMsg('');
+    // window.location.reload();
   };
+
+  const addInfo = ()=>{
+    const infoData = {
+      infoName:name,
+      infoPhone:phone,
+      infoGmail:email
+    }
+    const orderData = {
+      // 0 là chờ pending - 1 la da thanh toan
+      orderStatus:0,
+      orderCost:room_typeData.rtPrice,
+      orderCheckIn:checkInDate,
+      orderCheckOut:checkOutDate,
+      roomTypeId:room_typeData.id,
+      hotelId:hotelID,
+      userId:dataId
+    }
+    dispatch(createNewOrder(orderData))
+    dispatch(createNewInfo(infoData))
+  }
 
   return (
     <div style={{ maxWidth: "1100px", minHeight: "100vh" }} className="admin-post__container">
@@ -166,7 +218,7 @@ const Booking = () => {
               </div>
               {errorMsg && <div className="error-msg">{errorMsg}</div>}
 
-              <button style={{marginTop:'20px'}} disabled={!checkRoom} type="submit">Đặt phòng</button>
+              <button style={{marginTop:'20px'}}  disabled={!checkRoom} type="submit">Đặt phòng</button>
             
             </form>
           </div>

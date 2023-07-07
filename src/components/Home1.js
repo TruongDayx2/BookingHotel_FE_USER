@@ -14,6 +14,8 @@ const Home1 = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
+  const userId = useSelector(state=> state.login)
+  console.log('userId',userId)
   useEffect(() => {
     dispatch(getAllHotel());
     return () => {
@@ -69,7 +71,7 @@ const Home1 = () => {
     return (
       <Slider {...settings} ref={sliderRef} style={{width:'450px'}}>
         {data.map((item,index)=>(
-        <div style={{width:'450px'}}>
+        <div style={{width:'450px'}} key={index}>
           <Link to="/" key={index} onClick={() => handleSlideClick(item)}>
             <img src={item.hotelImg} alt={`Slide ${index}`} style={{height:'350px',width:'450px',borderRadius:'10px'}}/>
           </Link>

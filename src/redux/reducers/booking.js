@@ -1,5 +1,5 @@
 import { ERROR } from "../constants/base";
-import { GET_ROOM_HOTELID_ROOMTYPE } from "../constants/booking"; 
+import { CREATE_ORDER, GET_ROOM_HOTELID_ROOMTYPE, UPDATE_ROOM } from "../constants/booking"; 
 
 const initState = {
   data: [],
@@ -13,6 +13,18 @@ const roomReducers = (state=initState,payload)=>{
       return{
         ...state,
         data:payload.data,
+        success:true,
+        error:false
+      }
+    case CREATE_ORDER:
+      return{
+        ...state,
+        success:true,
+        error:false
+      }
+    case UPDATE_ROOM:
+      return{
+        ...state,
         success:true,
         error:false
       }

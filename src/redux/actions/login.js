@@ -13,6 +13,7 @@ export const login = (data) => async dispatch => {
         if(res.status === 200 ){
             localStorage.setItem("token", res.data.accessToken);
             localStorage.setItem("username", res.data.username);
+            localStorage.setItem("idUser", res.data.id);
             dispatch({
                 type: LOGIN,
                 data: res.data

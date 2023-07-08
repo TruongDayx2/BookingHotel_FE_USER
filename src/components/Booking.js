@@ -104,7 +104,8 @@ const Booking = () => {
     const infoData = {
       infoName:name,
       infoPhone:phone,
-      infoGmail:email
+      infoGmail:email,
+      userId:dataId
     }
     const orderData = {
       // 0 là chờ pending - 1 la da thanh toan

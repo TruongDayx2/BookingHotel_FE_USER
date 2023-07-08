@@ -1,5 +1,5 @@
 import { ERROR } from "../constants/base";
-import { GET_ALL } from "../constants/hotel";
+import { GET_ALL, GET_HOTEL } from "../constants/hotel";
 
 const initState = {
   data: [],
@@ -13,6 +13,13 @@ const hotelReducers = (state=initState,payload)=>{
       return{
         ...state,
         data:payload.data,
+        success:true,
+        error:false
+      }
+    case GET_HOTEL:
+      return{
+        ...state,
+        hotel:payload.data,
         success:true,
         error:false
       }

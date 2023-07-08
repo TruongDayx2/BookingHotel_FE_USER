@@ -1,5 +1,5 @@
 import { ERROR } from "../constants/base";
-import { GET_ROOM_TYPE_HOTELID } from "../constants/room_type";
+import { GET_ROOM_TYPE_HOTELID, GET_ROOM_TYPE_ID } from "../constants/room_type";
 
 const initState = {
   data: [],
@@ -13,6 +13,13 @@ const roomTypeReducers = (state=initState,payload)=>{
       return{
         ...state,
         data:payload.data,
+        success:true,
+        error:false
+      }
+    case GET_ROOM_TYPE_ID:
+      return{
+        ...state,
+        roomType:payload.data,
         success:true,
         error:false
       }

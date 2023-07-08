@@ -6,9 +6,11 @@ import {
 
 import { Redirect, useLocation } from 'react-router'
 import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 // import Logo from './Logo'
 
 const Header = () => {
+    const history = useHistory();
     const [isLogout, setIsLogout] = useState(false);
     const username = localStorage.getItem('username');
     const token = localStorage.getItem('token');
@@ -66,7 +68,9 @@ const Header = () => {
     
 
     }, [isLogout])
-    
+    const handleClickOrder =()=>{
+        history.push('/order')
+    }
 
     return  (
         <header className="header">
@@ -107,9 +111,9 @@ const Header = () => {
                           
                                             </div>
                                             <ul className="dropdown__menu">
-                                                <li style={{ cursor: "pointer" }} className="dropdown__item" >
+                                                <li style={{ cursor: "pointer" }} className="dropdown__item" onClick={() => handleClickOrder()}>
                                                     <div className="nav__link1" >
-                                                        Thông tin
+                                                        Đơn hàng
                                                     </div>
                                                 </li>
                                                 <li style={{ cursor: "pointer" }} className="dropdown__item" onClick={() => logout()}>

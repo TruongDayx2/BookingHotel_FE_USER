@@ -33,6 +33,7 @@ import Home1 from './components/Home1';
 import HotelSearch from './components/HotelSearch';
 import Hotel from './components/Hotel';
 import Booking from './components/Booking';
+import Order from './components/Order';
 
 function App() {
     // const isAdmin = useSelector(state => state.login.isAdmin);
@@ -79,6 +80,9 @@ function App() {
                     </Route>
                     <Route path="/hotel">
                         <Hotel />
+                    </Route>
+                    <Route path="/order">
+                        <Order />
                     </Route>
                     <Route path="/booking">
                         <Booking />

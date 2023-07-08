@@ -1,5 +1,5 @@
 import { ERROR } from "../constants/base";
-import { POST_INFO } from "../constants/info";
+import { GET_INFO, POST_INFO } from "../constants/info";
 
 const initState = {
   data: [],
@@ -12,6 +12,13 @@ const infoReducers = (state=initState,payload)=>{
     case POST_INFO:
       return{
         ...state,
+        success:true,
+        error:false
+      }
+    case GET_INFO:
+      return{
+        ...state,
+        data:payload.data,
         success:true,
         error:false
       }
